@@ -1,0 +1,32 @@
+// DoughnutChart.js
+"use client";
+import { useRef, useEffect } from "react";
+import Chart from "chart.js/auto";
+
+
+export default function DoughnutChart({ chartData }) {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      if (chartRef.current.chart) {
+        chartRef.current.chart.destroy();
+      }
+      const context = chartRef.current.getContext("2d");
+      const newChart = new Chart(context, {
+        type: "doughnut",
+        data: chartData,
+        options: {
+          // responsive: true
+        },
+      });
+      chartRef.current.chart = newChart;
+    }
+  }, [chartData]);
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <canvas ref={chartRef} />
+    </div>
+  );
+}
