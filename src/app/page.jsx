@@ -1,6 +1,8 @@
-import  React  from "react";
-export default function Home(){
-  return(
-    <div> hello </div>
-  )
+
+
+const App = () => {
+  
+
 }
+
+export default App;
